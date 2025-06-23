@@ -1,4 +1,4 @@
-import { SignUpForm, SignInForm ,FormErrors } from "./types";
+import { SignUpForm, SignInForm ,FormErrors } from "./types.js";
 
 
 export function validateEmail(email: string): boolean {

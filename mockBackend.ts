@@ -1,4 +1,4 @@
-import {SignUpForm, SignInForm} from "./types";
+import {SignUpForm, SignInForm} from "./types.js";
 const mockDB: SignUpForm[] = [];
 
 export async function mockSignUp(data: SignUpForm): Promise<void> {

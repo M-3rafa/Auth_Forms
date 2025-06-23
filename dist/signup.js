@@ -1,16 +1,5 @@
-"use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const validators_1 = require("./validators");
-const mockBackend_1 = require("./mockBackend");
+import { validateSignUp } from "./validators.js";
+import { mockSignUp } from "./mockBackend.js";
 const signupForm = document.getElementById("signup-form");
 const signupErrorsDiv = document.getElementById("signup-errors");
 const signupSection = document.getElementById("signup-section");
@@ -25,7 +14,7 @@ if (toSigninBtn) {
         signinSection.style.display = "block";
     });
 }
-signupForm.addEventListener("submit", (e) => __awaiter(void 0, void 0, void 0, function* () {
+signupForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     signupErrorsDiv.innerHTML = "";
     const formData = new FormData(signupForm);
@@ -35,7 +24,7 @@ signupForm.addEventListener("submit", (e) => __awaiter(void 0, void 0, void 0, f
         password: formData.get("password"),
         confirmPassword: formData.get("confirmPassword"),
     };
-    const errors = (0, validators_1.validateSignUp)(data);
+    const errors = validateSignUp(data);
     if (Object.keys(errors).length > 0) {
         Object.values(errors).forEach((msg) => {
             const p = document.createElement("p");
@@ -46,7 +35,7 @@ signupForm.addEventListener("submit", (e) => __awaiter(void 0, void 0, void 0, f
         return;
     }
     try {
-        yield (0, mockBackend_1.mockSignUp)(data);
+        await mockSignUp(data);
         alert("Sign up successful! Redirecting to dashboard...");
     }
     catch (err) {
@@ -55,4 +44,4 @@ signupForm.addEventListener("submit", (e) => __awaiter(void 0, void 0, void 0, f
         p.className = "error";
         signupErrorsDiv.appendChild(p);
     }
-}));
+});

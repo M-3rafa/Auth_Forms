@@ -1,17 +1,11 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateEmail = validateEmail;
-exports.validatePassword = validatePassword;
-exports.validateSignUp = validateSignUp;
-exports.validateSignIn = validateSignIn;
-function validateEmail(email) {
+export function validateEmail(email) {
     const re = /^\S+@\S+\.\S+$/;
     return re.test(email);
 }
-function validatePassword(password) {
+export function validatePassword(password) {
     return password.length >= 8;
 }
-function validateSignUp(data) {
+export function validateSignUp(data) {
     const errors = {};
     if (!data.fullName.trim())
         errors.fullName = "Full name is required.";
@@ -23,7 +17,7 @@ function validateSignUp(data) {
         errors.confirmPassword = "Passwords do not match.";
     return errors;
 }
-function validateSignIn(data) {
+export function validateSignIn(data) {
     const errors = {};
     if (!validateEmail(data.email))
         errors.email = "Invalid email address.";

@@ -1,6 +1,6 @@
 import {SignUpForm} from "./types";
-import {validateSignUp} from "./validators";
-import {mockSignUp} from "./mockBackend";
+import {validateSignUp} from "./validators.js";
+import {mockSignUp} from "./mockBackend.js";
 
 const signupForm = document.getElementById("signup-form") as HTMLFormElement;
 const signupErrorsDiv = document.getElementById(

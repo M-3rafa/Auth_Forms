@@ -1,6 +1,6 @@
-import {SignInForm} from "./types";
-import {validateSignIn} from "./validators";
-import {mockSignIn} from "./mockBackend";
+import {SignInForm} from "./types.js";
+import {validateSignIn} from "./validators.js";
+import {mockSignIn} from "./mockBackend.js";
 
 const signinForm = document.getElementById("signin-form") as HTMLFormElement;
 const signinErrorsDiv = document.getElementById(
